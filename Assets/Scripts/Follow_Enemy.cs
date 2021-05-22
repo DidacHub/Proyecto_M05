@@ -4,73 +4,71 @@ using UnityEngine;
 
 public class Follow_Enemy : MonoBehaviour
 {
-    public bool MoveRight;
-    public float speed;
-    public float WaitTime;
-    public float lineOfSite;
-    private Vector2 CurrentPos;
-    private GameObject player;
-    private float WaitedTime = 0f;
-    private bool firstTimeSeen = true;
-    
+    Rigidbody2D rb;
+    private float moveRight;
+    private bool facingRight = true;
+    public float jump;
+    public Transform player;
+    public Transform groundCheck;
+    private bool isGrounded;
+    private bool canSeePlayer;
+    Vector2 boxsize;
+    [SerializeField] Vector2 lineofSite;
+    LayerMask Player;
+
     Animator animator;
-    public SpriteRenderer sprite;
-    
+    public SpriteRenderer sp;
+
     // Start is called before the first frame update
     void Start()
     {
-        sprite = GetComponent<SpriteRenderer>();
+        rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        float delta = Time.deltaTime * 1000;
-        float distanceFromPlayer = 10000;
-
-        if (firstTimeSeen)
-        {
-            if (WaitedTime > WaitTime)
-            {
-                firstTimeSeen = false;
-                WaitedTime = 0;
-            }
-        }
-        else {
-            if (player.transform.position.x > transform.position.x) {
-                MoveRight = true;
-            }
-            else if (player.transform.position.x < transform.position.x)
-            {
-                MoveRight = false;
-            }
-            if (MoveRight)
-            {
-                transform.Translate(2 * delta * speed, 0, 0);
-                sprite.flipX = true;
-            }
-            else
-            {
-                transform.Translate(-2 * delta * speed, 0, 0);
-                sprite.flipX = false;
-            }
-
-            if (distanceFromPlayer > lineOfSite)
-            {
-                MoveRight = false;
-                firstTimeSeen = true;
-                CurrentPos = transform.position;
-            }
-           
-        }
     }
 
     private void FixedUpdate()
     {
-        
+        isGrounded = Physics2D.OverlapBox(groundCheck.position, boxsize, 0);
+        canSeePlayer = Physics2D.OverlapBox(transform.position, lineofSite, 0);
+        /*  if (!canSeePlayer && isGrounded)
+          {
+              //Animator de estar en idle
+
+          }*/
+        JumpAttack();
+
     }
 
+    void JumpAttack()
+    {
+        float distanceFromPlayer = player.position.x - transform.position.x;
+        if (isGrounded)
+        {
+            rb.AddForce(new Vector2(distanceFromPlayer, jump), ForceMode2D.Impulse);
+        }
+    }
+
+    void FlipTowardsPlayer()
+    {
+        float playerPosition = player.position.x - transform.position.x;
+        if (playerPosition < 0 && facingRight)
+        {
+            sp.flipX = true;
+        }
+        else if (playerPosition > 0 && !facingRight)
+        {
+            sp.flipX = false;
+        }
+    }
+
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(transform.position, lineofSite);
+    }
+
+    //Si le alcanza la bala del player se destruye
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Bullet")

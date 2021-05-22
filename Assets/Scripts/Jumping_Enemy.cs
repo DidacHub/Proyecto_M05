@@ -26,16 +26,6 @@ public class Jumping_Enemy : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-       
-       
-
-        
-      
-    }
-
     private void FixedUpdate()
     {
         isGrounded = Physics2D.OverlapBox(groundCheck.position, boxsize, 0);
@@ -67,6 +57,7 @@ public class Jumping_Enemy : MonoBehaviour
         }
     }
 
+    
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
