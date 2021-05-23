@@ -14,7 +14,9 @@ public class Shooting_Enemy : MonoBehaviour
     public float shootingRange;
     public GameObject bulletEnemy;
     public float fireRate = 1f;
+    public AudioClip EnemyShoot;
 
+    private AudioSource audioSource;
     Rigidbody2D rb;
     Animator animator;
     public SpriteRenderer sprite;
@@ -24,6 +26,7 @@ public class Shooting_Enemy : MonoBehaviour
     {
         sprite = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         nextFireTime = 0;
     }
@@ -49,6 +52,7 @@ public class Shooting_Enemy : MonoBehaviour
     void checkIfTimeToFire() {
 
         if (nextFireTime > fireRate) {
+            audioSource.PlayOneShot(EnemyShoot);
             GameObject bulletE = Instantiate(bulletEnemy, transform.position + transform.right * -1, transform.rotation);
             Destroy(bulletE, 4);
             nextFireTime = 0;
