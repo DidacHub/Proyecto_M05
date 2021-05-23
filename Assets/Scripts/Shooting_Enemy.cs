@@ -4,65 +4,63 @@ using UnityEngine;
 
 public class Shooting_Enemy : MonoBehaviour
 {
-    public bool MoveRight;
-    public float speed;
-    public GameObject bulletEnemy;
-    public float fireRate = 1f;
-    public float timeToShoot;
+
+    private float moveRight;
+    private bool facingRight = true;
+    public Transform player;
+   
+   
     public float nextFireTime;
     public float shootingRange;
-    
-    bool canShoot;
+    public GameObject bulletEnemy;
+    public float fireRate = 1f;
 
-    private GameObject player;
-
+    Rigidbody2D rb;
     Animator animator;
     public SpriteRenderer sprite;
 
     // Start is called before the first frame update
     void Start()
     {
-        canShoot = false;
         sprite = GetComponent<SpriteRenderer>();
+        rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         nextFireTime = 0;
-        timeToShoot = 0;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        float delta = Time.deltaTime * 1000;
-
-        //Contador de tiempo
-        if (canShoot == false) {
-            timeToShoot += delta;
-            if (timeToShoot > fireRate) {
-                canShoot = true;
-                timeToShoot = 0;
-            }
-        }
-
     }
 
     private void FixedUpdate()
     {
-        float delta = Time.fixedDeltaTime * 1000;
-        float distanceFromPlayer = 10000;
+     
+        float distanceFromPlayer = 100000;
         if (player != null) {
             distanceFromPlayer = Vector2.Distance(player.transform.position, transform.position);
         }
 
-        //si al distancia del player es inferior al shootingRage puede disparar
-        if (distanceFromPlayer < shootingRange) {
-            canShoot = true;
-            bulletEnemy = Instantiate(bulletEnemy, transform.position + transform.right * -1 * 40, transform.rotation);
-            Destroy(bulletEnemy, 4);
+        float delta = Time.fixedDeltaTime * 1000;
+        nextFireTime += delta;
+
+        //si al distancia del player es igual o inferior al shootingRage puede disparar
+        if (distanceFromPlayer <= shootingRange) {
+            checkIfTimeToFire();
         }
 
     }
 
+    void checkIfTimeToFire() {
 
+        if (nextFireTime > fireRate) {
+            GameObject bulletE = Instantiate(bulletEnemy, transform.position + transform.right * -1, transform.rotation);
+            Destroy(bulletE, 4);
+            nextFireTime = 0;
+        }
+    
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, shootingRange);
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

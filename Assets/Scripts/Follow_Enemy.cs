@@ -17,12 +17,13 @@ public class Follow_Enemy : MonoBehaviour
     LayerMask Player;
 
     Animator animator;
-    public SpriteRenderer sp;
+    public SpriteRenderer sprite;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        sprite = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
     }
 
@@ -53,11 +54,11 @@ public class Follow_Enemy : MonoBehaviour
         float playerPosition = player.position.x - transform.position.x;
         if (playerPosition < 0 && facingRight)
         {
-            sp.flipX = true;
+            sprite.flipX = true;
         }
         else if (playerPosition > 0 && !facingRight)
         {
-            sp.flipX = false;
+            sprite.flipX = false;
         }
     }
 

@@ -7,6 +7,8 @@ TagManager:
   - Patrol
   - Finale
   - DeathZone
+  - BulletEnemy
+  - Enemy
   layers:
   - Default
   - TransparentFX
