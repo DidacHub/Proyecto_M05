@@ -165,4 +165,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseSpeed: 5
-  bulletEnemy: {fileID: 0}
+  bulletEnemy: {fileID: 6984733176486859760}

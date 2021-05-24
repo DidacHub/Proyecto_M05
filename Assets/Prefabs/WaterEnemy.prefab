@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 8400664900890506563}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.523255, y: -0.19361451, z: 0}
-  m_LocalScale: {x: 0.3376221, y: 0.34304094, z: 1}
+  m_LocalScale: {x: 0.86006886, y: 0.97906554, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   nextFireTime: 0
-  shootingRange: 8
+  shootingRange: 20
   bulletEnemy: {fileID: 6984733176486859760, guid: d54a934c45b2a0e458530f9b077b4a25,
     type: 3}
   fireRate: 5000

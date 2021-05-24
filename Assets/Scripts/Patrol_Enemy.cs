@@ -44,7 +44,7 @@ public class Patrol_Enemy : MonoBehaviour
     //Si le alcanza la bala del player se destruye
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Bullet")
+        if (collision.gameObject.tag == "Water")
         {
             Destroy(this.gameObject);
         }

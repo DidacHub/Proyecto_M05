@@ -22,9 +22,13 @@ public class BulletEnemy : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.gameObject.tag == "bullet") {
+        if (collision.gameObject.tag == "Wind") {
             Destroy(this.gameObject);
         }
-    
+        if (collision.gameObject.tag == "Wall")
+        {
+            Destroy(this.gameObject);
+
+        }
     }
 }

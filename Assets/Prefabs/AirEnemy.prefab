@@ -60,7 +60,7 @@ Transform:
   m_GameObject: {fileID: 6628852767020478121}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.889, y: -0.338, z: 0}
-  m_LocalScale: {x: 0.37052056, y: 0.37076086, z: 1}
+  m_LocalScale: {x: 1.0961686, y: 1.1560501, z: 1}
   m_Children:
   - {fileID: 3868837002379555537}
   m_Father: {fileID: 0}
@@ -196,7 +196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jump: 3.5
-  player: {fileID: 0}
+  player: {fileID: 1830781329537073213, guid: 9e401d1823a109f45bb7448dfddbda1a, type: 3}
   groundCheck: {fileID: 3868837002379555537}
-  lineofSite: {x: 10.52, y: 8.21}
+  lineofSite: {x: 50.1, y: 21.2}
   sprite: {fileID: 2962606001358836314}

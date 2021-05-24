@@ -9,6 +9,12 @@ TagManager:
   - DeathZone
   - BulletEnemy
   - Enemy
+  - Shield
+  - Wind
+  - Fire
+  - Water
+  - Wall
+  - Scenary
   layers:
   - Default
   - TransparentFX

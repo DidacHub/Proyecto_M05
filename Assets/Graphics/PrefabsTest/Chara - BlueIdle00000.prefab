@@ -30,37 +30,6 @@ Transform:
   m_Father: {fileID: 1830781329537073213}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1252389488108076551
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7054929369318486981}
-  m_Layer: 0
-  m_Name: Wall
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7054929369318486981
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1252389488108076551}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 2386686306670934692}
-  m_Father: {fileID: 1830781329537073213}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2208379287760844263
 GameObject:
   m_ObjectHideFlags: 0
@@ -112,7 +81,7 @@ GameObject:
   - component: {fileID: 8293872051828388046}
   m_Layer: 0
   m_Name: Chara - BlueIdle00000
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -131,7 +100,7 @@ Transform:
   - {fileID: 7128546185152466357}
   - {fileID: 4449238487199072844}
   - {fileID: 1981835130}
-  - {fileID: 7054929369318486981}
+  - {fileID: 2386686306670934692}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -197,16 +166,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f7eef74a6122f842be0ad55e5fe71ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_JumpForce: 700
-  m_CrouchSpeed: 0.36
-  m_MovementSmoothing: 0.05
-  m_AirControl: 1
-  m_WhatIsGround:
+  JumpForce: 1300
+  CrouchSpeed: 0.36
+  MovementSmoothing: 0.042
+  AirControl: 1
+  WhatIsGround:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_GroundCheck: {fileID: 4449238487199072844}
-  m_CeilingCheck: {fileID: 7128546185152466357}
-  m_CrouchDisableCollider: {fileID: 0}
+  GroundCheck: {fileID: 4449238487199072844}
+  CeilingCheck: {fileID: 7128546185152466357}
   OnLandEvent:
     m_PersistentCalls:
       m_Calls:
@@ -221,9 +189,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnCrouchEvent:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!50 &5303574033261572274
 Rigidbody2D:
   serializedVersion: 4
@@ -301,7 +266,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 6329131115635757060}
   animator: {fileID: 1150610569607795748}
-  runSpeed: 200
+  Wall: {fileID: 6121337423138838152}
+  runSpeed: 80
 --- !u!95 &1150610569607795748
 Animator:
   serializedVersion: 3
@@ -374,7 +340,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6121337423138838152}
-  m_BodyType: 0
+  m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -400,7 +366,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 1.1209364}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -411,7 +377,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 8.87799, y: 9.18}
+  m_Size: {x: 8.87799, y: 6.9381275}
   m_EdgeRadius: 0
 --- !u!1 &7147210473845113472
 GameObject:
@@ -448,7 +414,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 7054929369318486981}
+    m_TransformParent: {fileID: 1830781329537073213}
     m_Modifications:
     - target: {fileID: 2144553089900432173, guid: 8bc5bbc499f897c41b17717753100400,
         type: 3}
@@ -458,12 +424,12 @@ PrefabInstance:
     - target: {fileID: 2386686306003465943, guid: 8bc5bbc499f897c41b17717753100400,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.65
+      value: 4.68
       objectReference: {fileID: 0}
     - target: {fileID: 2386686306003465943, guid: 8bc5bbc499f897c41b17717753100400,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.15
+      value: 1.52
       objectReference: {fileID: 0}
     - target: {fileID: 2386686306003465943, guid: 8bc5bbc499f897c41b17717753100400,
         type: 3}
@@ -493,7 +459,7 @@ PrefabInstance:
     - target: {fileID: 2386686306003465943, guid: 8bc5bbc499f897c41b17717753100400,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2386686306003465943, guid: 8bc5bbc499f897c41b17717753100400,
         type: 3}
@@ -523,6 +489,16 @@ PrefabInstance:
     - target: {fileID: 6121337423813548795, guid: 8bc5bbc499f897c41b17717753100400,
         type: 3}
       propertyPath: m_Name
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 6121337423813548795, guid: 8bc5bbc499f897c41b17717753100400,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6121337423813548795, guid: 8bc5bbc499f897c41b17717753100400,
+        type: 3}
+      propertyPath: m_TagString
       value: Wall
       objectReference: {fileID: 0}
     m_RemovedComponents: []
